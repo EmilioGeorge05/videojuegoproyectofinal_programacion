@@ -1,8 +1,8 @@
 #se desea crear un videojuego el cual simule el comportamiento de un personaje el cual tendra las siguientes opciones iniciales, crear personaje (nombre del personaje y sera unique, definir un apellido 
 #y cuanta vida inicial tendra(de tipo entero), el ataque con un porcentaje de 50 puntos y contara con defensa de 25 puntos y una velocidad de 15 puntos)
 #segunda opcion de menu principal llamado ataque y mostrara un menu llamado menu de ataque con 4 ataques iniciales, el primero escupitajo de fuego el cual 
-#disminuira 10 puntos de vida, segundo ataque patada fuerte la cual disminuye 20 puntos de vida, tercer ataque es cachetada guajolotera y disminuye 50 puntos de vida y cuarto atque balazo
-#a la mollera y disminuye el 100% de vida y la ultima opcion regresar que retorna al menu anterior y tercer opcion menu principal es menu "curar" como una tienda, 
+#disminuira 50 puntos de vida, segundo ataque patada fuerte la cual disminuye 80 puntos de vida, tercer ataque es cachetada guajolotera y disminuye 120 puntos de vida y cuarto atque balazo
+#a la mollera y disminuye  100 puntos, solo cuando la vida este al 30% y haya tomado una caguama y la ultima opcion regresar que retorna al menu anterior y tercer opcion menu principal es menu "curar" como una tienda, 
 #primer opcion "coca cola light" que sube 10 puntos de vida y baja estadisticas un 5%, segunda opcion de curacion es "tamal de mole" aumenta 10% de vida y baja 10% de velocidad
 #tercer opcion "chilaquiles verdes" aumenta la mitad de la vida inicial y aumenta 5% todas las estadisticas y por ultimo "caguama" aumenta 15% de vida y disminuye la velocidad a la mitad
 #y por ultimo "paracetamos " aumenta 100% de vida y disminuye 1% todas las estadisticas y opcion "regresar" y siguiente opcion mostrar toda la info de personaje como nombres y estadisticas. 
@@ -17,6 +17,9 @@
 #caguama no se puede tomar si no has comido nada o si lo haces te diga se te va a subir rapido
 #si tienes 100% de vida ya no excede el porcentaje aunque comas mas
 #revivir:---> 
+
+
+
 
 class Videojuego:
     #metodo contructor
