@@ -1,0 +1,79 @@
+ESPECIFICACIONES DEL VIDEOJUEGO DE COMBATE MULTIJUGADOR (TCP/IP)
+==================================================================
+PROGRAMACIÓN 2 - PROYECTO FINAL
+Integrantes: Emilio George Esteva / Irving Uriel Silia Rodriguez
+
+1. PANTALLAS DE NAVEGACIÓN Y ESTRUCTURA MODULAR:
+- Pantalla de Inicio / Bienvenida: Selección de Modo Multijugador (IP), Modo Local / Práctica, Crear / Administrar Personajes y Salir.
+- Pantalla de Lobby Multijugador:
+  * Crear Sala (Servidor / Host): Detección automática de IP local y puerto (5000), espera de conexión del rival.
+  * Unirse a Sala (Cliente): Entrada de IP del Host y puerto para conectarse.
+  * Selección de personaje registrado para la batalla.
+- Pantalla Arena de Combate 1v1:
+  * Combate por turnos sincronizado por red TCP/IP entre dos ordenadores.
+  * Visualización simultánea de ambos contrincantes: nombres, roles, avatares, corazones, barras de vida y estadísticas.
+  * Consola de registro de batalla (Battle Log) en tiempo real.
+- Pantalla / Menú de Tienda ("Curar"): Taquería tradicional con consumibles y reglas exactas.
+- Pantalla de KO / Revancha: Fin de partida con opciones sincronizadas de revivir o reiniciar.
+
+2. ROLES OFICIALES (ESPECIFICACIONES DE LA PIZARRA):
+- La vida inicial NO es modificable por el usuario, viene fijada por el rol elegido.
+- 1. Alumno Egresado:
+     * Vida: 300
+     * Ataque: 60
+     * Defensa: 45
+     * Velocidad: 30
+- 2. Alumno Pelón:
+     * Vida: 600
+     * Ataque: 30
+     * Defensa: 30
+     * Velocidad: 15
+- 3. Alumno Residente:
+     * Vida: 450
+     * Ataque: 45
+     * Defensa: 37
+     * Velocidad: 22
+- 4. Alumno Practicante:
+     * Vida: 500
+     * Ataque: 40
+     * Defensa: 35
+     * Velocidad: 20
+
+3. CREACIÓN Y ADMINISTRACIÓN DE PERSONAJES:
+- Nombre único (unique, validado en SQLite).
+- Apellido.
+- Selección del rol de los 4 oficiales de la pizarra.
+- El campo de vida inicial es de sólo lectura (bloqueado para evitar modificaciones).
+- Persistencia completa en base de datos SQLite (videojuegos.db).
+
+4. MENÚ DE ATAQUE (4 ATAQUES):
+- 1. Escupitajo de fuego: disminuye 50 puntos de vida.
+- 2. Patada fuerte: disminuye 80 puntos de vida.
+- 3. Cachetada guajolotera: disminuye 120 puntos de vida.
+- 4. Balazo a la mollera: disminuye 100 puntos de vida.
+     Condición estricta: Solo cuando la vida esté al 30% o menos Y haya tomado una caguama.
+- Opción de regresar al combate.
+
+5. MENÚ "CURAR" (TIENDA TAQUERÍA):
+- 1. Coca Cola Light: +10 puntos de vida y baja estadísticas un 5%.
+- 2. Tamal de mole: aumenta 10% de vida y baja 10% de velocidad.
+- 3. Chilaquiles verdes: aumenta la mitad de la vida inicial (+50%) y aumenta 5% todas las estadísticas.
+- 4. Caguama:
+     * Regla estricta: No se puede tomar si no has comido nada previamente (advierte "se te va a subir rápido").
+     * Efecto: Aumenta 15% de vida y disminuye la velocidad a la mitad (50%). Habilita condición para Balazo a la mollera.
+- 5. Paracetamol: aumenta 100% de vida (restaura completo) y disminuye 1% todas las estadísticas.
+- Regla de vida: Si tienes 100% de vida ya no excede el porcentaje aunque comas más.
+- Opción de regresar al combate.
+
+6. SISTEMA DE CORAZONES:
+- 100% vida: 5 corazones (❤️❤️❤️❤️❤️)
+- 75% a 99%: 4 corazones (❤️❤️❤️❤️🖤)
+- 50% a 74%: 3 corazones (❤️❤️❤️🖤🖤)
+- 25% a 49%: 2 corazones (❤️❤️🖤🖤🖤)
+- 1% a 24%: 1 corazón (❤️🖤🖤🖤🖤)
+- 0% vida: 0 corazones -> ¡Personaje morido! (KO 🖤🖤🖤🖤🖤)
+
+7. DERROTA Y REVIVIR:
+- Pantalla con el personaje noqueado.
+- Botón "Revivir": Restaura la vida al 100% para continuar.
+- Botón "¿Reintentar?": Restaura las estadísticas y vida originales y regresa al menú.
